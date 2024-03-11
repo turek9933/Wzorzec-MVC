@@ -10,15 +10,9 @@ function requestListener(request, response) {
     response.write("<body><h2>" + "My name is " + student.getStudentFullName() + ". My student ID is " + student.getStudentId + "." + "</h2></body>");
     response.write("</html>");
     response.end();
-    console.log("RequestListener", {
-        //request,
-        response,
-        //url,
-        //method,
-        //headers
-    });
 }
 
 const server = http.createServer(requestListener);
 
 server.listen(PORT);
+console.log("Server is running on " + toString(PORT) + ".");
