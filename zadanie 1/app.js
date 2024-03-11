@@ -7,7 +7,7 @@ function requestListener(request, response) {
     response.setHeader("Content-Type", "text/html");
     response.write("<html>");
     response.write("<head><title>About student</title></head>");
-    response.write("<body><h2>" + "My name is " + student.getStudentFullName() + ". My student ID is " + student.getStudentId + "." + "</h2></body>");
+    response.write("<body><h2>" + "My name is " + student.getStudentFullName() + ". My student ID is " + student.getStudentId() + "." + "</h2></body>");
     response.write("</html>");
     response.end();
 }
@@ -15,4 +15,5 @@ function requestListener(request, response) {
 const server = http.createServer(requestListener);
 
 server.listen(PORT);
-console.log("Server is running on " + toString(PORT) + ".");
+console.log("Server is running on " + PORT.toString() + ".");
+student.printStudent();

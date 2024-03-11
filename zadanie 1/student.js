@@ -5,8 +5,7 @@ let message = "My name is ${asdsa}. My student ID is ${STUDENT_ID}";
 function getStudentFullName() {}
 function getStudentId() {}
 
-console.log("My name is " + FULLNAME + ". My student ID is " + STUDENT_ID + ".");
-
+function printStudent() {}
 
 function getStudentFullName() {
     return FULLNAME;
@@ -15,10 +14,15 @@ function getStudentId() {
     return STUDENT_ID;
 }
 
-console.log("My name is " + getStudentFullName() + ". My student ID is " + getStudentId() + ".");
+function printStudent() {
+    console.log("My name is " + getStudentFullName() + ". My student ID is " + getStudentId() + ".");
+}
+
+printStudent();
 
 module.exports = {
     getStudentFullName,
     getStudentId,
+    printStudent,
 };
     
