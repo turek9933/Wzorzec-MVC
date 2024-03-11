@@ -12,8 +12,8 @@ const PORT = 3000
 //    response.end();
 //}
 
-const server = http.createServer(requestListener);
+const server = http.createServer();
 
-server.listen(PORT);
-console.log("Server is running on " + PORT.toString() + ".");
-student.printStudent();
+server.listen(PORT,
+console.log("Server is running on " + PORT.toString() + "."),
+student.printStudent());
