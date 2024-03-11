@@ -3,10 +3,15 @@ const http = require("http");
 
 const PORT = 3000
 
-const server = http.createServer();
+function requestListener(request, response) {
+    response.setHeader("Content-Type", "text/html");
+    response.write("<html>");
+    response.write("<head><title>About student</title></head>");
+    response.write("<body><p>" + "My name is " + student.getStudentFullName() + ". My student ID is " + student.getStudentId() + "." + "</p></body>");
+    response.write("</html>");
+    response.end();
+}
 
-server.listen(
-  PORT,
-  console.log("Server is running on " + PORT.toString() + "."),
-  student.printStudent()
-);
+const server = http.createServer(requestListener);
+
+server.listen(PORT);
