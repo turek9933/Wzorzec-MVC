@@ -7,7 +7,7 @@ function getStudentFullName(id) {
         return FULLNAME;
     }
     if (id === 1) {
-        return "Michal Wisniewski";
+        return "Kacper Nowak";
     }
     if (id === 2) {
         return "Maja Kowalska";
