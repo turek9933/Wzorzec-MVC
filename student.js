@@ -1,17 +1,18 @@
-const student = require("./student.js");
-const http = require("http");
+let FULLNAME = 'Tomasz Turek';
+let STUDENT_ID = 44674;
 
-const PORT = 3000
-
-function requestListener(request, response) {
-    response.setHeader("Content-Type", "text/html");
-    response.write("<html>");
-    response.write("<head><title>About student</title></head>");
-    response.write("<body><p>" + "My name is " + student.getStudentFullName() + ". My student ID is " + student.getStudentId() + "." + "</p></body>");
-    response.write("</html>");
-    response.end();
+function getStudentFullName() {
+    return FULLNAME;
+}
+function getStudentId() {
+    return STUDENT_ID;
+}
+function printStudent() {
+    console.log("My name is " + getStudentFullName() + ". My student ID is " + getStudentId() + ".");
 }
 
-const server = http.createServer(requestListener);
-
-server.listen(PORT);
+module.exports = {
+    getStudentFullName,
+    getStudentId,
+    printStudent,
+};
