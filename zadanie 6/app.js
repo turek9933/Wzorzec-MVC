@@ -1,4 +1,4 @@
-const student = require(".\\student.js");
+const student = require("./student.js");
 const http = require("http");
 
 const PORT = 3000
