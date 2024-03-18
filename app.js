@@ -1,50 +1,38 @@
-
-//strona to:
-//localhost:3000
 const http = require("http");
-const fs = require("fs");
+const home = require("./views/home.js");
+const student = require("./views/student.js");
+
 const PORT = 3000;
 
-
-const server = http.createServer((request, response) => {
+function requestListener(request, response) {
     const {url, method} = request;
+    console.log(`Server is running on ${PORT}`);
     if (url === "/") {
         response.setHeader("Content-Type", "text/html");
         response.write("<html>");
         response.write("<head><title>My second Node App</title></head>");
         response.write(`
         <body>
-            <form action="/message" method="POST">
-                <input type="text" name="message">
-                <button>Send</button>
+            <form action="/home" method="">
+                <button>home</button>
+            </form>
+            <form action="/student" method="">
+                <button>Student</button>
             </form>
         </body>
         `);
         response.write("</html>");
         return response.end();
     }
-    if (url === "/message" && method === "POST") {
-        const body = [];
-        request.on("data", (chunk) => {
-            console.log(chunk);
-            body.push(chunk);
-        })
-        return request.on("end", () => {
-            const parsedBody = Buffer.concat(body).toString();
-            const message = parsedBody.split("=")[1];
-            fs.writeFileSync("message.txt", message);
-            console.log(parsedBody);
-            response.statusCode = 302;
-            response.setHeader("Location", "/");
-            response.end();
-        })
+    if (url === "/student") {
+        student.renderPage(response);
     }
-    response.setHeader("Content-Type", "text/html");
-    response.write("<html>");
-    response.write("<head><title>My First Node Apppp!</title></head>");
-    response.write("<body>Oh meeen, you have clicked a butten<br>lameeee</body>");
-    response.write("</html>");
-    response.end();
-});
+    //if (url === "/home") {
+    else {
+        home.renderPage(response);
+    }
+}
+
+const server = http.createServer(requestListener);
 
 server.listen(PORT);
