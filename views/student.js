@@ -8,7 +8,7 @@ function renderPage(response) {
             <title>Student</title>
         </head>
         <body>
-            <div>Student wita home</div>
+            <div>Student</div>
         </body>
     </html>
     `);
