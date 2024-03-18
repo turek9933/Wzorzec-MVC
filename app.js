@@ -24,7 +24,7 @@ function requestListener(request, response) {
         response.write("</html>");
         return response.end();
     }
-    if (url === "/student") {
+    else if (url === "/student") {
         student.renderPage(response);
     }
     //if (url === "/home") {
