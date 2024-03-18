@@ -1,3 +1,5 @@
+const fs = require("fs");
+
 function renderPage(response) {
     response.write(`
     <html lang=”pl”>
@@ -51,6 +53,14 @@ function renderPage(response) {
     `);
     return response.end()
 }
+
+function save(data) {
+    const { name, lastname, age, gender, code, studyField } = data;
+    const dataToSave = `Imię: ${name}\nNazwisko: ${lastname}\nWiek: ${age}\nPłeć: ${gender}\nNumer albumu: ${code}\nKierunek: ${studyField}`;
+    fs.writeFileSync(`${code}.txt`, dataToSave);
+}
+
 module.exports = {
     renderPage,
+    save,
 };
