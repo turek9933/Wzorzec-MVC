@@ -39,7 +39,17 @@ function requestListener(request, response) {
     else if (url === "/home") {
         home.renderPage(response);
     }
-    
+    else if (url === "/submit" && method === "POST") {
+        let body = "";
+        request.on("data", (chunk) => {
+            body += chunk.toString();
+        });
+        request.on("end", () => {
+            const data = body;
+            home.save(data);
+            student.renderPage(response, data);
+        });
+    }
     else {
         response.write("<html>");
         response.write("<head><title>Blad</title></head>");
