@@ -7,6 +7,6 @@ const server = http.createServer();
 
 server.listen(
   PORT,
-  console.log("Server is running on " + PORT.toString() + "."),
-  student.printStudent()
+  console.log(`Server is running on ${PORT}.`),
+  console.log("My name is " + student.getStudentFullName() + ". My student ID is " + student.getStudentId() + "."),
 );

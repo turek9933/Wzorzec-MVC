@@ -14,6 +14,4 @@ function printStudent() {
 module.exports = {
     getStudentFullName,
     getStudentId,
-    printStudent,
 };
-    
