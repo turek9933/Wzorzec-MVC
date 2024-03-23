@@ -1,3 +1,3 @@
 const student = require("./student.js");
 
-student.printStudent();
+console.log("My name is " + student.getStudentFullName() + ". My student ID is " + student.getStudentId() + ".");
