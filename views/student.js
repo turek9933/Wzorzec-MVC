@@ -1,6 +1,6 @@
-function renderPage(response) {
-    response.setHeader("Content-Type", "text/html");
-    response.write(`
+function renderPage(res) {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.end(`
     <html lang=”pl”>
         <head>
             <meta charset="UTF-8">
@@ -12,7 +12,6 @@ function renderPage(response) {
         </body>
     </html>
     `);
-    return response.end()
 }
 module.exports = {
     renderPage,
