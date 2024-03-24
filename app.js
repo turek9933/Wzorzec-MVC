@@ -1,7 +1,7 @@
 const student = require("./student.js");
 const http = require("http");
 
-const PORT = 3000
+const PORT = 3000;
 
 function requestListener(request, response) {
     response.setHeader("Content-Type", "text/html");
