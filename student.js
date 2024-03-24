@@ -36,6 +36,4 @@ function printStudent(id) {
 module.exports = {
     getStudentFullName,
     getStudentId,
-    printStudent,
 };
-    
