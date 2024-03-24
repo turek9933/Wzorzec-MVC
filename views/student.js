@@ -1,28 +1,25 @@
-const fs = require("fs");
-
-function renderPage(response, data) {
-    response.write(`
-        <html lang="pl">
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Student</title>
-            </head>
-            <body>
-                <h1>Student profile</h1>
-                <div>
-                    <p>Imię: ${data.name}</p>
-                    <p>Nazwisko: ${data.lastname}</p>
-                    <p>Wiek: ${data.age}</p>
-                    <p>Płeć: ${data.gender}</p>
-                    <p>Numer albumu: ${data.code}</p>
-                    <p>Kierunek: ${data.studyField}</p>
-                </div>
-            </body>
-        </html>
+function renderPage(res, studentData) {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.end(`
+    <html lang="pl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Student</title>
+    </head>
+    <body>
+        <h1>Student Profile</h1>
+        <p>Album number: ${studentData.code}</p>
+        <p>Name: ${studentData.name}</p>
+        <p>Last name: ${studentData.lastname}</p>
+        <p>Gender: ${studentData.gender}</p>
+        <p>Age: ${studentData.age}</p>
+        <p>Study field: ${studentData.studyField}</p>
+    </body>
+    </html>
     `);
-    response.end();
 }
+
 module.exports = {
     renderPage,
 };

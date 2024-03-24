@@ -1,73 +1,51 @@
 const http = require("http");
-const home = require("./views/home.js");
-const student = require("./views/student.js");
+const fs = require("fs");
+const index = require('./routes/index.js');
 
 const PORT = 3000;
 
-function requestListener(request, response) {
-    const { url, method } = request;
-    console.log(`Server is running on ${PORT}`);
-    if (url === "/") {
-        response.setHeader("Content-Type", "text/html");
-        response.write("<html>");
-        response.write("<head><title>My second Node App</title></head>");
-        response.write(`
-        <body>
-            <form action="/home" method="">
-                <button>home</button>
-            </form>
-            <form action="/student" method="POST">
-                <button>Student</button>
-            </form>
-        </body>
-        `);
-        response.write("</html>");
-        return response.end();
-    } else if (url === "/student" && method === "POST") {
-        let body = "";
-        request.on("data", (chunk) => {
-            body += chunk.toString(); 
-        });
-        request.on("end", () => {
-            response.writeHead(302, { Location: "/student" });
-            response.end();
-        });
+function requestListener(req, res) {
+    if (req.url === "/" && req.method === "GET") {
+        index.handleHome(req, res);
     }
-    else if (url === "/student") {
-        student.renderPage(response);
-    }
-    else if (url === "/home") {
-        home.renderPage(response);
-    }
-    else if (url === "/submit" && method === "POST") {
-        let body = "";
-        request.on("data", (chunk) => {
-            body += chunk.toString();
+    else if (req.url === "/student" && req.method === "POST") {
+        let body = [];
+        req.on("data", (chunk) => {
+            body.push(chunk);
         });
-        request.on("end", () => {
-            const data = body;
-            home.save(data);
-            student.renderPage(response, data);
+        req.on("end", () => {
+            const parsedBody = Buffer.concat(body).toString();
+            let formData = {};
+            const dataParts = parsedBody.split('&');
+            for (let part of dataParts) {
+                let [key, value] = part.split('=');
+                key = decodeURIComponent(key);
+                value = decodeURIComponent(value.replace(/\+/g, ' '));
+                formData[key] = value;
+            }
+
+            const dataForFile = Object.keys(formData).map(key => `${key}: ${formData[key]}`).join("\n");
+
+            let albumNum = formData.code;
+
+            fs.writeFile(`./${albumNum}.txt`, dataForFile, err => {
+                if (err) {
+                    console.error('Wystąpił błąd podczas zapisywania pliku:', err);
+                    res.writeHead(500, {'Content-Type': 'text/html'});
+                    res.end('<h1>Wystąpił błąd serwera przy zapisie danych</h1>');
+                    return;
+                }
+            });
+
+            index.handleStudent(req, res, formData);
         });
     }
     else {
-        response.write("<html>");
-        response.write("<head><title>Blad</title></head>");
-        response.write(`
-        <body>
-            404 Not Found
-        </body>
-        `);
-        response.write("</html>");
-        return request.on("end", () => {
-            response.statusCode = 404;
-            response.setHeader("Location", "/");
-            response.setHeader("Content-Type", "text/html");
-            response.end();
-        })
+        res.writeHead(404, {'Content-Type': 'text/html'});
+        res.end('<h1>404 Not Found</h1>');
     }
 }
 
 const server = http.createServer(requestListener);
 
-server.listen(PORT);
+server.listen(PORT, console.log(`Server is running on ${PORT}`));
