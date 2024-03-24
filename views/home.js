@@ -1,5 +1,5 @@
-function renderPage(response) {
-    response.write(`
+function renderPage(res) {
+    res.end(`
     <html lang=”pl”>
         <head>
             <meta charset="UTF-8">
@@ -49,7 +49,6 @@ function renderPage(response) {
         </body>
     </html>
     `);
-    return response.end()
 }
 module.exports = {
     renderPage,
