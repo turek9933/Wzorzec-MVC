@@ -1,6 +1,0 @@
-name: Puss
-lastname: in Boots
-age: 13
-gender: male
-code: 545
-studyField: Szermierka
