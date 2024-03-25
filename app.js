@@ -2,6 +2,15 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
+
+app.use((req, res, next) => {
+  const method = req.method;
+  const url = req.url;
+  const date = new Date().toString();
+  console.log(`Request ${method} on path ${url} ${date}`);
+  next();
+});
+
 app.use(express.urlencoded({extended: true}));
 
 let students = [];
