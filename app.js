@@ -15,6 +15,7 @@ app.use((req, res, next) => {
 app.use(express.urlencoded({extended: true}));
 
 let students = [];
+let freeID = 0;
 
 app.get('/home', (req, res) => {
   res.sendFile('views/home.html', {root: __dirname});
@@ -22,12 +23,12 @@ app.get('/home', (req, res) => {
 
 app.post('/student', (req, res) => {
     const {firstName, lastName, fieldOfStudy} = req.body;
-    students.push({firstName, lastName, fieldOfStudy});
+    students.push({id: freeID++, firstName, lastName, fieldOfStudy});
     console.log(students);
     res.send(`
     <html>
     <head><title>Student</title></head>
-    <body><p>Hello, ${firstName} ${lastName} on ${fieldOfStudy} studies!</p></body>
+    <body><p>Hello, ${freeID - 1} ${firstName} ${lastName} on ${fieldOfStudy} studies!</p></body>
     </html>
     `);
 });
@@ -49,6 +50,7 @@ app.get('/users', (req, res) => {
     </body>
     </html>`);
 });
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on PORT:${PORT}`);
