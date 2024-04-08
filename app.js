@@ -1,35 +1,28 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
 const PORT = 3000;
 
-app.get('/home', (req, res) => {
-  res.send(`
-  <html>
-  <head>
-    <title>Home</title>
-  </head>
-  <body>
-    <p>HOME</p>
-  </body>
-  </html>`
-  );
+app.set('view engine', 'ejs');
+
+app.use(bodyParser.urlencoded({extended: true}));
+
+app.get('/', (req, res) => {
+    res.render('Home');
 });
 
-app.get('/student', (req, res) => {
-  res.send(`
-  <html>
-  <head><title>Student</title></head>
-  <body><p>STUDENT</p></body>
-  </html>`);
+app.get('/success', (req, res) => {
+    res.render('Success');
 });
 
-app.get('/add-student', (req, res) => {
-  res.send(`<html>
-  <head><title>Add Student</title></head>
-  <body><p>ADD STUDENT</p></body>
-  </html>`);
+app.get('/students-list', (req, res) => {
+    res.render('List');
+});
+
+app.post('/add-student', (req, res) => {
+    res.render('AddStudent');
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is running on PORT:${PORT}`);
+    console.log(`Server is running on ${PORT}`);
 });
