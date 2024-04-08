@@ -20,7 +20,7 @@ app.get('/students-list', (req, res) => {
 });
 
 app.post('/add-student', (req, res) => {
-    res.render('List');
+    res.redirect('/students-list')// Przekierowanie na widok listy
 });
 
 app.listen(PORT, () => {
