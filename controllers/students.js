@@ -17,11 +17,11 @@ const postAddStudent = (req, res) => {
 };
 
 const getAddingNewStudentSuccessPage = (req, res) => {
-    res.render('Success');
+    res.render('Success', {pageTitle: 'Success'});
 };
 
 const getStudentsListPage = (req, res) => {
-    res.render('List');
+    res.render('List', {pageTitle: 'List', students});
 };
 
 const getAddNewStudentPage = (req, res) => {
