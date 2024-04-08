@@ -1,3 +1,7 @@
+const express = require("express");
+
+const router = express.Router();
+
 let students = [];
 let nextId = 1;
 
@@ -21,7 +25,7 @@ const getStudentsListPage = (req, res) => {
 };
 
 const getAddNewStudentPage = (req, res) => {
-    res.render('Home', {pageTitle: "Add New Student"});
+    res.render('Home', {pageTitle: 'Add New Student'});
 };
 
 module.exports = {
