@@ -3,9 +3,15 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Home</title>
+        <title>Add new student</title>
     </head>
     <body>
-        <h1>Home</h1>
+        <h1>Add new student</h1>
+        <form action="/add-student" method="POST">
+            <input type="text" name="fullName">
+            <input type="text" name="code">
+            <input type="text" name="fieldOfStudies">
+            <button type="submit">Submit</button>
+        </form>
     </body>
 </html>
