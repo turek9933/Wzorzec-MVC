@@ -21,7 +21,7 @@ const getStudentsListPage = (req, res) => {
 };
 
 const getAddNewStudentPage = (req, res) => {
-    res.render('Home');
+    res.render('Home', {pageTitle: "Add New Student"});
 };
 
 module.exports = {

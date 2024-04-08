@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>List</title>
+        <% include partials/head.ejs %>
     </head>
     <body>
+        <% include partials/navigation.ejs %>
         <h1>List</h1>
+        <ul>
+            <% students.forEach(student => { %>
+                <li>
+                    <p><%= student.fullName %></p>
+                    <p><%= student.code %></p>
+                    <p><%= student.fieldOfStudies %></p>
+                </li>
+            <% }); %>
+        </ul>
     </body>
 </html>
