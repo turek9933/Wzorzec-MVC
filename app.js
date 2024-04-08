@@ -12,17 +12,11 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', studentsController.getAddNewStudentPage);
 
-app.get('/success', (req, res) => {
-    res.render('Success');
-});
+app.get('/success', studentsController.getAddingNewStudentSuccessPage);
 
-app.get('/students-list', (req, res) => {
-    res.render('List');
-});
+app.get('/students-list', studentsController.getStudentsListPage);
 
-app.post('/add-student', (req, res) => {
-    res.redirect('/students-list')// Przekierowanie na widok listy
-});
+app.post('/add-student', studentsController.postAddStudent);
 
 app.use(errorController.getNotFoundPage);
 
