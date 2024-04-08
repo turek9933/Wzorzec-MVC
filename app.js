@@ -20,7 +20,7 @@ app.get('/students-list', (req, res) => {
 });
 
 app.post('/add-student', (req, res) => {
-    res.render('AddStudent');
+    res.render('List');
 });
 
 app.listen(PORT, () => {
