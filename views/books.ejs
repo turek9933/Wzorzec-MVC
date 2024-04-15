@@ -14,6 +14,9 @@
                     <li>
                         <p><%= book.title %></p>
                         <p><%= book.publishingYear %></p>
+                        <form action="/book/delete/<%= book.id %>" method="post" onsubmit="return confirm('Are you sure?');">
+                            <button type="submit">Delete</button>
+                        </form>
                     </li>
                 <% }); %>
             </ul>

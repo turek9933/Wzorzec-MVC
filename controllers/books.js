@@ -21,6 +21,8 @@ const postAddBook = (req, res) => {
 const postDeleteBook = (req, res) => {
     const {id} = req.params;
     const fixedId = parseInt(id);
+    // console.log(id);
+    // console.log(fixedId);
     books = books.filter((book) => book.id !== fixedId);
     res.redirect('/book/list');
 }
