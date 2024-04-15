@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('partials/head.ejs') %>
+    </head>
+    <body>
+        <%- include('partials/navigation.ejs') %>
+
+        <h1>Add New Book</h1>
+
+        <form action="" method="POST">
+            <div>
+                <label for="title">Title:</label><br>
+                <input type="text" id="title" name="title" required>
+            </div>
+            <div>
+                <label for="publishingYear">Publishing year:</label><br>
+                <input type="number" id="publishingYear" name="publishingYear">
+            </div>
+            <div>
+                <label for="authorId">Author ID:</label><br>
+                <input type="number" id="authorId" name="authorId">
+            </div>
+            <button type="submit">Add book</button>
+        </form>
+    </body>
+</html>
