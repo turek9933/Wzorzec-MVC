@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('partials/head.ejs') %>
+    </head>
+    <body>
+        <%- include('partials/navigation.ejs') %>
+
+        <h1>Authors list</h1>
+
+        <% if (authors && authors.length > 0) { %>
+            <ul>
+                <% authors.forEach(author => { %>
+                    <li>
+                        <p><%= author.name %></p>
+                    </li>
+                <% }); %>
+            </ul>
+        <% } else { %>
+            <p>No authors have been found.</p>
+        <% } %>
+    </body>
+</html>
