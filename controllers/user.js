@@ -1,4 +1,4 @@
-const {User} = require('../models/User');
+const User = require('../models/User');
 
 const getSetUserSession = (request, response) => {
     const users = User.getAll();
