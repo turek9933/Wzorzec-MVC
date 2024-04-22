@@ -10,6 +10,13 @@ class Book {
     static getAll() {
         return books;
     }
+
+    borrow() {
+        this.available = false;
+    }
+    return() {
+        this.available = true;
+    }
 }
 
 const books = [

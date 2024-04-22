@@ -5,10 +5,25 @@ class User {
         this.borrowedBooks = borrowedBooks;
     }
 
+    borrowBook(book) {
+        if (!this.borrowedBooks.find(b => b.id === book.id)) {
+            this.borrowedBooks.push(book);
+        }
+    }
+
+    returnBook(bookId) {
+        this.borrowedBooks = this.borrowedBooks.filter(book => book.id !== bookId);
+    }
+
+    findBorrowedBookById(bookId) {
+        return this.borrowedBooks.some(book => book.id === bookId);
+    }
+
     static getAll() {
         return users;
     }
 }
+
 
 const users = [
     new User(1, 'Adam'),
@@ -18,4 +33,4 @@ const users = [
     new User(5, 'Tadeusz')
 ];
 
-module.exports = {User};
+module.exports = User;
