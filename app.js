@@ -6,6 +6,8 @@ const app = express();
 const PORT = 3000;
 
 const errorRoutes = require('./routes/error');
+const bookRoutes = require('./routes/book');
+const userRoutes = require('./routes/user');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -20,6 +22,10 @@ app.use(
         saveUninitialized: true,
     })
 );
+
+app.use('/user', userRoutes);
+
+app.use(bookRoutes);
 
 app.use("*", errorRoutes);
 
