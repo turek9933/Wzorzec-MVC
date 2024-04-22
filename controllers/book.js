@@ -1,7 +1,5 @@
 const Book = require('../models/Book');
 
-console.log('constroler book');
-
 
 const getBooksList = (req, res) => {
     const userId = req.session.userId;
